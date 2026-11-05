@@ -1,4 +1,4 @@
-# William Armitage — Portfolio
+# William Armitage — Portfolio 
 
 A dependency-free personal portfolio built with semantic HTML, CSS and vanilla JavaScript. It is designed to publish directly through GitHub Pages.
 
