@@ -1,26 +1,42 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en-GB" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#07111f" />
+    <meta name="theme-color" content="#f7f7f4" />
     <meta
       name="description"
-      content="William Armitage is a Lead Software Engineer specialising in Go, distributed systems, cloud platforms and engineering leadership."
+      content="William Armitage is a Lead Software Engineer in Manchester specialising in Go, backend services and distributed systems."
     />
     <meta property="og:title" content="William Armitage | Lead Software Engineer" />
     <meta
       property="og:description"
-      content="Reliable distributed systems, thoughtful engineering leadership and products built from first principles."
+      content="Lead Software Engineer working with Go, backend services and distributed systems."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://williamarmitage.co.uk" />
+    <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="William Armitage | Lead Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Lead Software Engineer in Manchester working with Go, backend services and distributed systems."
+    />
     <title>William Armitage | Lead Software Engineer</title>
     <link rel="canonical" href="https://williamarmitage.co.uk" />
+    <script>
+      (() => {
+        try {
+          const savedTheme = localStorage.getItem('portfolio-theme');
+          if (savedTheme === 'light' || savedTheme === 'dark') {
+            document.documentElement.dataset.theme = savedTheme;
+          }
+        } catch (_) {}
+      })();
+    </script>
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307111f'/%3E%3Cpath d='M12 18h8l7 27 5-20h7l5 20 7-27h8L49 50h-9l-5-18-5 18h-9z' fill='%2367e8f9'/%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f7f7f4'/%3E%3Cpath d='M12 18h8l7 27 5-20h7l5 20 7-27h8L49 50h-9l-5-18-5 18h-9z' fill='%2346715d'/%3E%3C/svg%3E"
     />
     <link rel="stylesheet" href="styles.css" />
     <script type="application/ld+json">
@@ -51,10 +67,13 @@
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="scroll-progress" aria-hidden="true"><span></span></div>
+    <div class="cursor-aura" aria-hidden="true" data-cursor-aura></div>
 
     <header class="site-header" data-header>
       <a class="brand" href="#top" aria-label="William Armitage, home">
-        <span class="brand__mark" aria-hidden="true">WA</span>
+        <span class="brand__avatar" aria-hidden="true">
+          <img src="assets/william-profile.png" width="160" height="160" alt="" />
+        </span>
       </a>
 
       <button
@@ -86,11 +105,12 @@
       <section class="hero section" id="top" aria-labelledby="hero-title">
         <div class="hero__copy" data-reveal>
           <p class="eyebrow"><span></span> Lead Software Engineer</p>
-          <h1 id="hero-title">William Armitage</h1>
-          <p class="hero__role">Go · Distributed systems · Cloud platforms</p>
+          <h1 id="hero-title">Hi, I’m William.</h1>
+          <p class="hero__role">Go · Backend services · Distributed systems</p>
           <p class="hero__lede">
-            I design and build backend systems, lead engineering teams and modernise services that are already
-            running in production. I stay hands-on with the code.
+            I’m a Lead Software Engineer based in Manchester. I mainly work with Go, backend services and
+            distributed systems, leading projects from early technical decisions through to production while
+            staying close to the code.
           </p>
           <div class="hero__actions">
             <a class="button button--primary" href="#work">
@@ -101,18 +121,29 @@
           </div>
           <ul class="hero__signals" aria-label="Areas of expertise">
             <li>Go</li>
+            <li>Backend engineering</li>
             <li>Distributed systems</li>
-            <li>Cloud architecture</li>
-            <li>Engineering leadership</li>
+            <li>Technical leadership</li>
           </ul>
         </div>
 
         <aside class="hero-profile" aria-label="Professional profile" data-reveal>
           <div class="hero-profile__heading">
-            <span>Engineer profile</span>
+            <span>At a glance</span>
             <span>Current</span>
           </div>
-          <p>I lead engineering teams through projects end to end, from shaping the technical solution and architecture to hands-on delivery and production rollout.</p>
+          <div class="hero-profile__intro">
+            <p>I’ve spent more than nine years building and running production software. I enjoy work where system design, delivery and day-to-day engineering all matter.</p>
+            <img
+              class="hero-profile__gopher"
+              src="assets/gopher.png"
+              width="411"
+              height="560"
+              alt=""
+              aria-hidden="true"
+              decoding="async"
+            />
+          </div>
           <dl>
             <div><dt>Experience</dt><dd>9+ years</dd></div>
             <div><dt>Based in</dt><dd>Manchester, UK</dd></div>
@@ -144,7 +175,7 @@
             <p class="eyebrow"><span></span> Experience</p>
             <h2 id="journey-title">Professional experience.</h2>
           </div>
-          <p>More than nine years of professional software engineering experience.</p>
+          <p>A concise view of my experience. My work is described at a deliberately high level.</p>
         </div>
 
         <div class="timeline">
@@ -179,11 +210,11 @@
       <section class="section selected-work" id="work" aria-labelledby="selected-title">
         <div class="section-heading section-heading--row" data-reveal>
           <div>
-            <p class="eyebrow"><span></span> Selected work</p>
-            <h2 id="selected-title">Selected engineering work.</h2>
+            <p class="eyebrow"><span></span> How I work</p>
+            <h2 id="selected-title">What I focus on.</h2>
           </div>
           <p>
-            Employer project details are kept high-level to avoid sharing confidential information.
+            Employer work is deliberately kept high-level here.
           </p>
         </div>
 
@@ -191,44 +222,40 @@
           <article class="story" data-reveal>
             <div class="story__number">01</div>
             <div class="story__body">
-              <p class="story__meta">Regulated systems</p>
-              <h3>Delivering regulatory change without downtime.</h3>
+              <p class="story__meta">Backend engineering</p>
+              <h3>Building systems that stay understandable.</h3>
               <p>
-                Built staged, retry-safe Go and SQL processing for regulatory data changes. Jobs could resume after
-                failures while the existing platform remained available to customers.
+                I mainly work on Go and .NET services, APIs and data flows. I prefer simple boundaries, explicit
+                failure handling and code that is easy for the next engineer to change.
               </p>
-              <p class="story__result"><span>Result</span> Delivered to a fixed deadline without customer downtime.</p>
             </div>
-            <div class="story__tags" aria-label="Technologies"><span>Go</span><span>SQL</span><span>Concurrency</span><span>Observability</span></div>
+            <div class="story__tags" aria-label="Areas"><span>Go</span><span>C#</span><span>APIs</span><span>SQL</span></div>
           </article>
 
           <article class="story" data-reveal>
             <div class="story__number">02</div>
             <div class="story__body">
-              <p class="story__meta">Cloud modernisation</p>
-              <h3>Moving production services to Go and Google Cloud.</h3>
+              <p class="story__meta">Production engineering</p>
+              <h3>Treating production as part of the design.</h3>
               <p>
-                Migrated legacy .NET services incrementally rather than attempting a full rewrite. Each move included
-                monitoring, rollback and clearer production information for on-call teams.
+                Reliable software needs useful monitoring, sensible rollout plans and clear operational behaviour.
+                I try to make those decisions during development, not after release.
               </p>
-              <p class="story__result"><span>Result</span> Better production visibility for engineering, product and operations.</p>
             </div>
-            <div class="story__tags" aria-label="Technologies"><span>Google Cloud</span><span>Go</span><span>PostgreSQL</span><span>CI/CD</span></div>
+            <div class="story__tags" aria-label="Areas"><span>Reliability</span><span>Observability</span><span>Cloud</span><span>On-call</span></div>
           </article>
 
           <article class="story" data-reveal>
             <div class="story__number">03</div>
             <div class="story__body">
-              <p class="story__meta">Developer tooling</p>
-              <h3>Building shared Go tools that other teams adopted.</h3>
+              <p class="story__meta">Technical leadership</p>
+              <h3>Leading projects without stepping away from the code.</h3>
               <p>
-                Created reusable packages for logging, metrics and retries, plus a Go BDD framework that runs
-                business-readable acceptance tests in CI/CD. Other teams adopted the packages instead of rebuilding
-                the same foundations.
+                I help teams shape solutions, make trade-offs, break work into deliverable stages and learn from each
+                other. I still contribute code, reviews and production support.
               </p>
-              <p class="story__result"><span>Result</span> Shared tooling adopted by other engineering teams.</p>
             </div>
-            <div class="story__tags" aria-label="Technologies"><span>Go</span><span>BDD</span><span>Testing</span><span>Mentoring</span></div>
+            <div class="story__tags" aria-label="Areas"><span>Technical design</span><span>Mentoring</span><span>Delivery</span><span>Collaboration</span></div>
           </article>
         </div>
       </section>
@@ -239,9 +266,10 @@
             <img src="assets/tournelymain.png" alt="Tournely — Plan. Schedule. Compete." />
           </div>
           <div>
-            <p class="eyebrow eyebrow--lime"><span></span> Founder and software engineer</p>
+            <p class="eyebrow eyebrow--lime"><span></span> Independent project</p>
             <h2 id="tournely-title">I built Tournely to replace tournament spreadsheets.</h2>
             <p>
+              I built it after seeing how much tournament admin still happened in spreadsheets and message threads.
               It brings entries, draws, availability, court scheduling and results into one product for tennis,
               padel and pickleball clubs.
             </p>
@@ -318,8 +346,8 @@
         <div class="contact__inner" data-reveal>
           <div class="contact__copy">
             <p class="eyebrow"><span></span> Contact</p>
-            <h2 id="contact-title">Get in touch.</h2>
-            <p>I’m open to senior and lead software engineering roles focused on backend systems, platforms and developer tooling.</p>
+            <h2 id="contact-title">Let’s talk.</h2>
+            <p>If you’d like to talk about backend engineering, one of my projects or a role, email is the easiest way to reach me.</p>
           </div>
           <div class="contact__actions">
             <a class="button button--primary" href="mailto:william.oliver@hotmail.co.uk">Email me</a>

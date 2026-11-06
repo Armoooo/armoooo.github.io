@@ -8,21 +8,41 @@
   const one = (selector, scope = document) => scope.querySelector(selector);
   const all = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 
+  // A quiet pointer response for fine-pointer devices. It never replaces the native cursor.
+  const cursorAura = one('[data-cursor-aura]');
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  if (cursorAura && finePointer.matches && !reducedMotion.matches) {
+    let pointerFrame;
+    document.addEventListener('pointermove', (event) => {
+      if (pointerFrame) window.cancelAnimationFrame(pointerFrame);
+      pointerFrame = window.requestAnimationFrame(() => {
+        pointerFrame = undefined;
+        cursorAura.style.setProperty('--cursor-x', `${event.clientX}px`);
+        cursorAura.style.setProperty('--cursor-y', `${event.clientY}px`);
+        cursorAura.classList.add('is-visible');
+        cursorAura.classList.toggle('is-interactive', event.target instanceof Element && Boolean(event.target.closest('a, button')));
+      });
+    }, { passive: true });
+    document.addEventListener('pointerleave', () => cursorAura.classList.remove('is-visible'));
+  }
+
   // Theme
   const themeButton = one('[data-theme-toggle]');
-  const savedTheme = localStorage.getItem('portfolio-theme');
-  if (savedTheme === 'light' || savedTheme === 'dark') root.dataset.theme = savedTheme;
+  const themeColour = one('meta[name="theme-color"]');
 
   const syncThemeLabel = () => {
     if (!themeButton) return;
     const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
     themeButton.setAttribute('aria-label', `Switch to ${next} theme`);
+    themeColour?.setAttribute('content', root.dataset.theme === 'dark' ? '#111714' : '#f7f7f4');
   };
 
   syncThemeLabel();
   themeButton?.addEventListener('click', () => {
     root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-    localStorage.setItem('portfolio-theme', root.dataset.theme);
+    try {
+      localStorage.setItem('portfolio-theme', root.dataset.theme);
+    } catch (_) {}
     syncThemeLabel();
   });
 
@@ -67,7 +87,7 @@
     header?.classList.toggle('is-scrolled', top > 18);
 
     const marker = top + Math.min(window.innerHeight * 0.36, 260);
-    let current = sections[0]?.id;
+    let current;
     sections.forEach((section) => {
       if (section.offsetTop <= marker) current = section.id;
     });
@@ -97,12 +117,12 @@
     revealItems.forEach((item) => revealObserver.observe(item));
   }
 
-  // CV skill explorer
+  // Technical skill explorer
   const skillsData = {
     languages: ['Go', 'C#', '.NET', 'TypeScript', 'JavaScript', 'React', 'SQL'],
     systems: ['Distributed systems', 'Concurrency', 'Microservices', 'Performance optimisation', 'Event-driven architecture', 'Idempotency'],
     cloud: ['Google Cloud', 'Cloud Run', 'Cloud Spanner', 'Cloud SQL', 'Pub/Sub', 'Docker', 'Kubernetes', 'Linux'],
-    observability: ['GitHub', 'Jenkins', 'GitLab', 'CI/CD', 'Grafana', 'Prometheus', 'New Relic', 'Splunk', 'ELK'],
+    observability: ['Jenkins', 'GitLab', 'CI/CD', 'Grafana', 'Prometheus', 'New Relic', 'Splunk', 'ELK'],
     data: ['PostgreSQL', 'SQL Server', 'Kafka']
   };
   const skillTabs = all('[data-skill-category]');
