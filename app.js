@@ -73,6 +73,146 @@
     if (event.key === 'Escape') closeMenu();
   });
 
+  // A small, session-only hello. The query flag is useful when previewing it.
+  const welcomeNote = one('[data-welcome]');
+  const welcomeClose = one('[data-welcome-close]');
+  const welcomeFireworks = one('[data-welcome-fireworks]');
+  if (welcomeNote) {
+    let welcomeTimer;
+    let welcomeRemoveTimer;
+    let fireworksFrame;
+    let fireworksBurstTimer;
+
+    const stopFireworks = () => {
+      window.cancelAnimationFrame(fireworksFrame);
+      window.clearTimeout(fireworksBurstTimer);
+      if (welcomeFireworks) welcomeFireworks.hidden = true;
+    };
+
+    const launchFireworks = () => {
+      if (!welcomeFireworks || reducedMotion.matches) return;
+
+      const context = welcomeFireworks.getContext('2d');
+      if (!context) return;
+
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const colours = ['#8eb9a4', '#bddb70', '#f0f3ef', '#7ac9d6'];
+      const particles = [];
+      let waitingForSecondBurst = true;
+
+      welcomeFireworks.width = Math.round(width * pixelRatio);
+      welcomeFireworks.height = Math.round(height * pixelRatio);
+      welcomeFireworks.style.width = `${width}px`;
+      welcomeFireworks.style.height = `${height}px`;
+      welcomeFireworks.hidden = false;
+      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+      const addBurst = (x, y, count = 34) => {
+        for (let index = 0; index < count; index += 1) {
+          const angle = (Math.PI * 2 * index) / count + (Math.random() - 0.5) * 0.16;
+          const speed = 2.4 + Math.random() * 3.5;
+          particles.push({
+            x,
+            y,
+            previousX: x,
+            previousY: y,
+            velocityX: Math.cos(angle) * speed,
+            velocityY: Math.sin(angle) * speed,
+            colour: colours[index % colours.length],
+            life: 1,
+            decay: 0.012 + Math.random() * 0.009,
+            size: 1.4 + Math.random() * 1.6,
+          });
+        }
+      };
+
+      const draw = () => {
+        context.clearRect(0, 0, width, height);
+        context.globalCompositeOperation = 'lighter';
+
+        for (let index = particles.length - 1; index >= 0; index -= 1) {
+          const particle = particles[index];
+          particle.previousX = particle.x;
+          particle.previousY = particle.y;
+          particle.velocityX *= 0.985;
+          particle.velocityY = particle.velocityY * 0.985 + 0.045;
+          particle.x += particle.velocityX;
+          particle.y += particle.velocityY;
+          particle.life -= particle.decay;
+
+          if (particle.life <= 0) {
+            particles.splice(index, 1);
+            continue;
+          }
+
+          context.globalAlpha = Math.max(particle.life, 0);
+          context.strokeStyle = particle.colour;
+          context.lineWidth = particle.size;
+          context.lineCap = 'round';
+          context.beginPath();
+          context.moveTo(particle.previousX, particle.previousY);
+          context.lineTo(particle.x, particle.y);
+          context.stroke();
+
+          context.fillStyle = particle.colour;
+          context.beginPath();
+          context.arc(particle.x, particle.y, particle.size * 0.7, 0, Math.PI * 2);
+          context.fill();
+        }
+
+        context.globalAlpha = 1;
+        context.globalCompositeOperation = 'source-over';
+
+        if (particles.length || waitingForSecondBurst) {
+          fireworksFrame = window.requestAnimationFrame(draw);
+        } else {
+          welcomeFireworks.hidden = true;
+        }
+      };
+
+      addBurst(width * (width < 600 ? 0.72 : 0.78), height * 0.22);
+      fireworksBurstTimer = window.setTimeout(() => {
+        addBurst(width * (width < 600 ? 0.28 : 0.3), height * 0.34, 30);
+        waitingForSecondBurst = false;
+      }, 380);
+      fireworksFrame = window.requestAnimationFrame(draw);
+    };
+
+    const dismissWelcome = () => {
+      window.clearTimeout(welcomeTimer);
+      window.clearTimeout(welcomeRemoveTimer);
+      stopFireworks();
+      welcomeNote.classList.remove('is-visible');
+      welcomeNote.classList.add('is-leaving');
+      welcomeRemoveTimer = window.setTimeout(() => {
+        welcomeNote.hidden = true;
+        welcomeNote.classList.remove('is-leaving');
+      }, reducedMotion.matches ? 0 : 260);
+    };
+
+    let alreadyWelcomed = false;
+    try {
+      alreadyWelcomed = sessionStorage.getItem('portfolio-welcomed') === 'true';
+    } catch (_) {}
+    const forceWelcome = new URLSearchParams(window.location.search).has('welcome');
+
+    if (!alreadyWelcomed || forceWelcome) {
+      window.setTimeout(() => {
+        welcomeNote.hidden = false;
+        window.requestAnimationFrame(() => welcomeNote.classList.add('is-visible'));
+        launchFireworks();
+        welcomeTimer = window.setTimeout(dismissWelcome, 7800);
+        try {
+          sessionStorage.setItem('portfolio-welcomed', 'true');
+        } catch (_) {}
+      }, reducedMotion.matches ? 150 : 700);
+    }
+
+    welcomeClose?.addEventListener('click', dismissWelcome);
+  }
+
   // Scroll progress, header state and active section
   const progress = one('.scroll-progress span');
   const navLinks = all('.site-nav a[href^="#"]');

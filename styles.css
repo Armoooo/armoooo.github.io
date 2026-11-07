@@ -138,6 +138,125 @@ body::after {
   border-color: color-mix(in srgb, var(--accent) 36%, transparent);
 }
 
+.welcome-note[hidden] {
+  display: none;
+}
+
+.welcome-fireworks[hidden] {
+  display: none;
+}
+
+.welcome-fireworks {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.welcome-note {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 96;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  width: min(calc(100% - 44px), 360px);
+  min-height: 94px;
+  padding: 18px 16px 17px 19px;
+  border: 1px solid color-mix(in srgb, var(--accent) 36%, var(--line));
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--bg-elevated) 94%, transparent);
+  box-shadow: 0 22px 55px color-mix(in srgb, var(--text) 15%, transparent);
+  opacity: 0;
+  transform: translateY(18px) scale(0.97);
+  backdrop-filter: blur(16px);
+  pointer-events: none;
+  gap: 14px;
+}
+
+.welcome-note.is-visible {
+  animation: welcome-in 480ms var(--ease) forwards;
+  pointer-events: auto;
+}
+
+.welcome-note.is-leaving {
+  animation: welcome-out 240ms ease forwards;
+  pointer-events: none;
+}
+
+.welcome-note__copy strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--text);
+  font-size: 0.98rem;
+}
+
+.welcome-note__copy strong span {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: welcome-wave 800ms ease 480ms both;
+}
+
+.welcome-note__copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.welcome-note__close {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.welcome-note__close:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.welcome-note__close i,
+.welcome-note__close i::after {
+  position: absolute;
+  width: 13px;
+  height: 1.5px;
+  border-radius: 999px;
+  background: currentColor;
+  content: "";
+}
+
+.welcome-note__close i { transform: rotate(45deg); }
+.welcome-note__close i::after { transform: rotate(90deg); }
+
+@keyframes welcome-in {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes welcome-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(10px) scale(0.98); }
+}
+
+@keyframes welcome-wave {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(18deg); }
+  50% { transform: rotate(-8deg); }
+  75% { transform: rotate(14deg); }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .cursor-aura { display: block; }
 }
@@ -388,7 +507,7 @@ h3 {
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(370px, 0.95fr);
-  align-items: center;
+  align-items: start;
   min-height: 720px;
   padding-top: 132px;
   padding-bottom: 76px;
@@ -2352,6 +2471,13 @@ h3 {
   .site-nav.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
   .site-nav a { padding: 13px; }
 
+  .welcome-note {
+    right: 12px;
+    bottom: 12px;
+    width: calc(100% - 24px);
+    min-height: 88px;
+  }
+
   .section { width: auto; margin-inline: 18px; padding-block: 86px; }
   .hero { width: auto; margin-inline: 18px; padding-top: 126px; gap: 42px; }
   .hero__lede { font-size: 1.05rem; }
@@ -2478,6 +2604,12 @@ h3 {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .welcome-note,
+  .welcome-note.is-visible,
+  .welcome-note.is-leaving,
+  .welcome-note__copy strong span { animation: none; }
+  .welcome-note.is-visible { opacity: 1; transform: none; }
+  .welcome-fireworks { display: none; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .js [data-reveal] { opacity: 1; transform: none; }
   .system-visual__stage { transform: none !important; }

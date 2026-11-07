@@ -211,10 +211,10 @@
         <div class="section-heading section-heading--row" data-reveal>
           <div>
             <p class="eyebrow"><span></span> How I work</p>
-            <h2 id="selected-title">What I focus on.</h2>
+            <h2 id="selected-title">Things I care about.</h2>
           </div>
           <p>
-            Employer work is deliberately kept high-level here.
+            I can’t share much detail about employer projects, but this is how I tend to approach the work.
           </p>
         </div>
 
@@ -222,11 +222,11 @@
           <article class="story" data-reveal>
             <div class="story__number">01</div>
             <div class="story__body">
-              <p class="story__meta">Backend engineering</p>
-              <h3>Building systems that stay understandable.</h3>
+              <p class="story__meta">Backend work</p>
+              <h3>Keep it simple enough to change.</h3>
               <p>
-                I mainly work on Go and .NET services, APIs and data flows. I prefer simple boundaries, explicit
-                failure handling and code that is easy for the next engineer to change.
+                Most of my day-to-day work is in Go and .NET services. I like small APIs, clear names and obvious
+                failure paths. Clever code is rarely worth making the next change harder.
               </p>
             </div>
             <div class="story__tags" aria-label="Areas"><span>Go</span><span>C#</span><span>APIs</span><span>SQL</span></div>
@@ -235,11 +235,11 @@
           <article class="story" data-reveal>
             <div class="story__number">02</div>
             <div class="story__body">
-              <p class="story__meta">Production engineering</p>
-              <h3>Treating production as part of the design.</h3>
+              <p class="story__meta">Running software</p>
+              <h3>Think about production before it gets there.</h3>
               <p>
-                Reliable software needs useful monitoring, sensible rollout plans and clear operational behaviour.
-                I try to make those decisions during development, not after release.
+                I want to know how we’ll spot a problem, roll back safely and help whoever is on call. Logs, metrics
+                and useful errors are part of building the feature.
               </p>
             </div>
             <div class="story__tags" aria-label="Areas"><span>Reliability</span><span>Observability</span><span>Cloud</span><span>On-call</span></div>
@@ -248,14 +248,14 @@
           <article class="story" data-reveal>
             <div class="story__number">03</div>
             <div class="story__body">
-              <p class="story__meta">Technical leadership</p>
-              <h3>Leading projects without stepping away from the code.</h3>
+              <p class="story__meta">Working with people</p>
+              <h3>Stay involved, even when I’m leading.</h3>
               <p>
-                I help teams shape solutions, make trade-offs, break work into deliverable stages and learn from each
-                other. I still contribute code, reviews and production support.
+                I enjoy turning a vague problem into a plan the team can ship. I’ll ask questions early, review and
+                write code, and stay involved once it reaches production.
               </p>
             </div>
-            <div class="story__tags" aria-label="Areas"><span>Technical design</span><span>Mentoring</span><span>Delivery</span><span>Collaboration</span></div>
+            <div class="story__tags" aria-label="Areas"><span>Code reviews</span><span>Mentoring</span><span>Delivery</span><span>Production</span></div>
           </article>
         </div>
       </section>
@@ -501,6 +501,18 @@
       <p>Lead Software Engineer · Manchester, UK</p>
       <p>© <span data-year></span> William Armitage</p>
     </footer>
+
+    <canvas class="welcome-fireworks" data-welcome-fireworks aria-hidden="true" hidden></canvas>
+
+    <aside class="welcome-note" data-welcome role="status" aria-live="polite" aria-atomic="true" hidden>
+      <div class="welcome-note__copy">
+        <strong>Hi there <span aria-hidden="true">👋</span></strong>
+        <p>Thanks for stopping by. Have a look around.</p>
+      </div>
+      <button class="welcome-note__close" type="button" data-welcome-close>
+        <span class="sr-only">Dismiss welcome message</span><i aria-hidden="true"></i>
+      </button>
+    </aside>
 
     <script src="app.js" defer></script>
   </body>
