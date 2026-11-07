@@ -89,7 +89,7 @@
 
       <nav class="site-nav" id="primary-navigation" aria-label="Primary navigation" data-menu>
         <a href="#journey">Experience</a>
-        <a href="#work">Work</a>
+        <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
       </nav>
 
@@ -113,7 +113,7 @@
             staying close to the code.
           </p>
           <div class="hero__actions">
-            <a class="button button--primary" href="#work">
+            <a class="button button--primary" href="#projects">
               See my work
               <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5" /></svg>
             </a>
@@ -260,8 +260,146 @@
         </div>
       </section>
 
-      <section class="section tournely" id="tournely" aria-labelledby="tournely-title">
-        <div class="tournely__intro" data-reveal>
+      <section class="section projects" id="projects" aria-labelledby="projects-title">
+        <div class="section-heading section-heading--row" data-reveal>
+          <div>
+            <p class="eyebrow"><span></span> Selected projects</p>
+            <h2 id="projects-title">Products built around real problems.</h2>
+          </div>
+          <p>
+            A growing collection of independent products and technical experiments, from production software to
+            focused developer tools.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card" data-reveal>
+            <button
+              class="project-card__visual project-card__visual--tournely"
+              type="button"
+              data-project-open="tournely-dialog"
+              aria-label="Open the Tournely case study"
+            >
+              <img src="assets/tournelymain.png" alt="Tournely — Plan. Schedule. Compete." />
+              <span class="project-card__visual-label">Production SaaS</span>
+            </button>
+            <div class="project-card__content">
+              <div class="project-card__meta"><span>01</span><span>Live product</span></div>
+              <h3>Tournely</h3>
+              <p class="project-card__summary">
+                Tournament management software that brings entries, draws, scheduling and results into one place.
+              </p>
+              <p class="project-card__why">
+                <span>Why I built it</span>
+                Tournament organisers were still coordinating complex events through spreadsheets and message
+                threads. I wanted to turn that fragmented process into one clear workflow.
+              </p>
+              <div class="project-card__tags" aria-label="Tournely technologies">
+                <span>Go</span><span>PostgreSQL</span><span>Google Cloud</span><span>Stripe</span>
+              </div>
+              <div class="project-card__links">
+                <button type="button" data-project-open="tournely-dialog">Open case study <span aria-hidden="true">↗</span></button>
+                <a href="https://tournely.co.uk" target="_blank" rel="noreferrer">Visit product <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <a
+              class="project-card__visual project-card__visual--mailsentry"
+              href="https://github.com/Armoooo/mail-sentry"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="View MailSentry on GitHub"
+            >
+              <div class="mail-terminal" aria-hidden="true">
+                <div class="mail-terminal__bar"><i></i><i></i><i></i><span>mailsentry / analysis</span></div>
+                <div class="mail-terminal__body">
+                  <div class="mail-terminal__command"><span>$</span> mailsentry scan suspicious.eml</div>
+                  <div class="mail-terminal__score"><strong>100</strong><span>/ 100<br />high-risk</span></div>
+                  <div class="mail-terminal__finding"><span>+30</span> DMARC authentication failed</div>
+                  <div class="mail-terminal__finding"><span>+30</span> Displayed link disguises destination</div>
+                  <div class="mail-terminal__finding"><span>+20</span> Reply-To domain differs</div>
+                </div>
+              </div>
+              <span class="project-card__visual-label">Open source</span>
+            </a>
+            <div class="project-card__content">
+              <div class="project-card__meta"><span>02</span><span>Go CLI</span></div>
+              <h3>MailSentry</h3>
+              <p class="project-card__summary">
+                An explainable email risk analyser that scores saved messages and shows exactly which warning signs
+                it found.
+              </p>
+              <p class="project-card__why">
+                <span>Why I built it</span>
+                Spam tools often return a verdict without showing their reasoning. I wanted to explore a transparent,
+                testable approach where every point in the risk score can be understood.
+              </p>
+              <div class="project-card__tags" aria-label="MailSentry technologies">
+                <span>Go</span><span>Email security</span><span>MIME</span><span>CLI</span>
+              </div>
+              <div class="project-card__links">
+                <a href="https://github.com/Armoooo/mail-sentry" target="_blank" rel="noreferrer">View on GitHub <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <a
+              class="project-card__visual project-card__visual--relayforge"
+              href="https://github.com/Armoooo/relay-forge"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="View RelayForge on GitHub"
+            >
+              <div class="relay-board" aria-hidden="true">
+                <div class="relay-board__header">
+                  <span>RelayForge / dispatcher</span><i></i><small>Live</small>
+                </div>
+                <div class="relay-board__flow">
+                  <div class="relay-node"><small>Incoming</small><strong>Event API</strong></div>
+                  <span class="relay-arrow">→</span>
+                  <div class="relay-node relay-node--queue"><small>Persistent</small><strong>Event queue</strong></div>
+                </div>
+                <div class="relay-board__workers">
+                  <div><span>W1</span><small>delivered</small><i class="is-success"></i></div>
+                  <div><span>W2</span><small>retry 4s</small><i class="is-retry"></i></div>
+                  <div><span>W3</span><small>sending</small><i class="is-active"></i></div>
+                </div>
+                <div class="relay-board__footer"><span>3 concurrent workers</span><span>idempotent intake</span></div>
+              </div>
+              <span class="project-card__visual-label">Distributed systems</span>
+            </a>
+            <div class="project-card__content">
+              <div class="project-card__meta"><span>03</span><span>Go service</span></div>
+              <h3>RelayForge</h3>
+              <p class="project-card__summary">
+                A concurrent webhook delivery service that persists events, signs requests and retries failures
+                without creating duplicate jobs.
+              </p>
+              <p class="project-card__why">
+                <span>Why I built it</span>
+                Webhook delivery looks simple until receivers fail or clients retry. I built RelayForge to explore
+                how Go worker pools, PostgreSQL locking and idempotency combine into reliable infrastructure.
+              </p>
+              <div class="project-card__tags" aria-label="RelayForge technologies">
+                <span>Go</span><span>PostgreSQL</span><span>Concurrency</span><span>Idempotency</span>
+              </div>
+              <div class="project-card__links">
+                <a href="https://github.com/Armoooo/relay-forge" target="_blank" rel="noreferrer">View on GitHub <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <dialog class="project-dialog" id="tournely-dialog" aria-labelledby="tournely-title" data-project-dialog>
+        <button class="project-dialog__close" type="button" data-dialog-close>
+          <span>Close case study</span><i aria-hidden="true"></i>
+        </button>
+        <section class="tournely tournely--dialog">
+          <div class="tournely__intro" data-reveal>
           <div class="tournely__logo-wrap">
             <img src="assets/tournelymain.png" alt="Tournely — Plan. Schedule. Compete." />
           </div>
@@ -274,73 +412,74 @@
               padel and pickleball clubs.
             </p>
           </div>
-        </div>
-
-        <div class="tournely__proof" data-reveal>
-          <div><strong>5</strong><span>clubs</span></div>
-          <div><strong>200</strong><span>players</span></div>
-          <div><strong>3</strong><span>tennis · padel · pickleball</span></div>
-          <div><strong>1</strong><span>product from entry to result</span></div>
-        </div>
-
-        <div class="product-tour" data-reveal>
-          <div class="product-tour__steps" role="tablist" aria-label="Tournely product tour">
-            <button id="tour-tab-entries" role="tab" aria-selected="true" aria-controls="product-panel" data-tour="entries"><span>01</span><strong>Collect entries</strong><small>Availability and events in one place</small></button>
-            <button id="tour-tab-draws" role="tab" aria-selected="false" aria-controls="product-panel" data-tour="draws"><span>02</span><strong>Build draws</strong><small>Seeds, byes and winner progression</small></button>
-            <button id="tour-tab-schedule" role="tab" aria-selected="false" aria-controls="product-panel" data-tour="schedule"><span>03</span><strong>Schedule courts</strong><small>Capacity, clashes and spacing considered</small></button>
-            <button id="tour-tab-publish" role="tab" aria-selected="false" aria-controls="product-panel" data-tour="publish"><span>04</span><strong>Publish clearly</strong><small>Players always see the latest information</small></button>
           </div>
 
-          <div class="product-shell" id="product-panel" role="tabpanel" aria-labelledby="tour-tab-entries" aria-live="polite" tabindex="0" data-product-shell>
-            <div class="product-shell__bar"><i></i><i></i><i></i><span>Product capability map</span></div>
-            <div class="product-shell__body">
-              <div class="product-shell__sidebar" aria-hidden="true">
-                <span class="product-shell__brand">T</span>
-                <i class="active"></i><i></i><i></i><i></i>
-              </div>
-              <div class="product-shell__content">
-                <div class="product-shell__heading">
-                  <div><small data-tour-kicker>Registration</small><h3 data-tour-title>Collect entries and availability.</h3></div>
-                  <span class="status"><i></i> Live</span>
+          <div class="tournely__proof" data-reveal>
+            <div><strong>5</strong><span>clubs</span></div>
+            <div><strong>200</strong><span>players</span></div>
+            <div><strong>3</strong><span>tennis · padel · pickleball</span></div>
+            <div><strong>1</strong><span>product from entry to result</span></div>
+          </div>
+
+          <div class="product-tour" data-reveal>
+            <div class="product-tour__steps" role="tablist" aria-label="Tournely product tour">
+              <button id="tour-tab-entries" role="tab" aria-selected="true" aria-controls="product-panel" data-tour="entries"><span>01</span><strong>Collect entries</strong><small>Availability and events in one place</small></button>
+              <button id="tour-tab-draws" role="tab" aria-selected="false" aria-controls="product-panel" data-tour="draws"><span>02</span><strong>Build draws</strong><small>Seeds, byes and winner progression</small></button>
+              <button id="tour-tab-schedule" role="tab" aria-selected="false" aria-controls="product-panel" data-tour="schedule"><span>03</span><strong>Schedule courts</strong><small>Capacity, clashes and spacing considered</small></button>
+              <button id="tour-tab-publish" role="tab" aria-selected="false" aria-controls="product-panel" data-tour="publish"><span>04</span><strong>Publish clearly</strong><small>Players always see the latest information</small></button>
+            </div>
+
+            <div class="product-shell" id="product-panel" role="tabpanel" aria-labelledby="tour-tab-entries" aria-live="polite" tabindex="0" data-product-shell>
+              <div class="product-shell__bar"><i></i><i></i><i></i><span>Product capability map</span></div>
+              <div class="product-shell__body">
+                <div class="product-shell__sidebar" aria-hidden="true">
+                  <span class="product-shell__brand">T</span>
+                  <i class="active"></i><i></i><i></i><i></i>
                 </div>
-                <p data-tour-copy>Players choose events, share availability and provide the details organisers need before the draw begins.</p>
-                <div class="capability-grid" data-tour-grid>
-                  <article><span>01</span><strong>Event selection</strong><small>Singles, doubles and mixed</small></article>
-                  <article><span>02</span><strong>Availability</strong><small>Date-level constraints</small></article>
-                  <article><span>03</span><strong>Entry window</strong><small>Configurable opening and closing</small></article>
-                  <article><span>04</span><strong>Admin oversight</strong><small>One reliable player list</small></article>
+                <div class="product-shell__content">
+                  <div class="product-shell__heading">
+                    <div><small data-tour-kicker>Registration</small><h3 data-tour-title>Collect entries and availability.</h3></div>
+                    <span class="status"><i></i> Live</span>
+                  </div>
+                  <p data-tour-copy>Players choose events, share availability and provide the details organisers need before the draw begins.</p>
+                  <div class="capability-grid" data-tour-grid>
+                    <article><span>01</span><strong>Event selection</strong><small>Singles, doubles and mixed</small></article>
+                    <article><span>02</span><strong>Availability</strong><small>Date-level constraints</small></article>
+                    <article><span>03</span><strong>Entry window</strong><small>Configurable opening and closing</small></article>
+                    <article><span>04</span><strong>Admin oversight</strong><small>One reliable player list</small></article>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="architecture" data-reveal>
-          <div class="architecture__copy">
-            <p class="eyebrow eyebrow--lime"><span></span> How it was built</p>
-            <h3>A production SaaS application built in Go.</h3>
-            <p>
-              Server-rendered Go, PostgreSQL persistence, tenant-isolated administration, secure sessions,
-              subscription billing and automated tournament scheduling.
-            </p>
-            <a class="text-link" href="https://tournely.co.uk" target="_blank" rel="noreferrer">
-              Visit Tournely <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-          <div class="architecture__map" aria-label="Simplified Tournely architecture">
-            <button data-architecture="browser"><span>Public + admin</span><strong>Browser</strong></button>
-            <i aria-hidden="true"></i>
-            <button data-architecture="go"><span>Server-rendered</span><strong>Go application</strong></button>
-            <i aria-hidden="true"></i>
-            <div class="architecture__branches">
-              <button data-architecture="postgres"><span>Transactional</span><strong>PostgreSQL</strong></button>
-              <button data-architecture="stripe"><span>Subscription</span><strong>Stripe</strong></button>
-              <button data-architecture="gcp"><span>Managed runtime</span><strong>Google Cloud</strong></button>
+          <div class="architecture" data-reveal>
+            <div class="architecture__copy">
+              <p class="eyebrow eyebrow--lime"><span></span> How it was built</p>
+              <h3>A production SaaS application built in Go.</h3>
+              <p>
+                Server-rendered Go, PostgreSQL persistence, tenant-isolated administration, secure sessions,
+                subscription billing and automated tournament scheduling.
+              </p>
+              <a class="text-link" href="https://tournely.co.uk" target="_blank" rel="noreferrer">
+                Visit Tournely <span aria-hidden="true">↗</span>
+              </a>
             </div>
-            <p aria-live="polite" data-architecture-caption>Select a component to explore its role.</p>
+            <div class="architecture__map" aria-label="Simplified Tournely architecture">
+              <button data-architecture="browser"><span>Public + admin</span><strong>Browser</strong></button>
+              <i aria-hidden="true"></i>
+              <button data-architecture="go"><span>Server-rendered</span><strong>Go application</strong></button>
+              <i aria-hidden="true"></i>
+              <div class="architecture__branches">
+                <button data-architecture="postgres"><span>Transactional</span><strong>PostgreSQL</strong></button>
+                <button data-architecture="stripe"><span>Subscription</span><strong>Stripe</strong></button>
+                <button data-architecture="gcp"><span>Managed runtime</span><strong>Google Cloud</strong></button>
+              </div>
+              <p aria-live="polite" data-architecture-caption>Select a component to explore its role.</p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </dialog>
 
       <section class="section contact" id="contact" aria-labelledby="contact-title">
         <div class="contact__inner" data-reveal>

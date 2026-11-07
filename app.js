@@ -117,6 +117,27 @@
     revealItems.forEach((item) => revealObserver.observe(item));
   }
 
+  // Project case-study dialogs keep the homepage concise while preserving detail.
+  const projectDialogOpeners = new WeakMap();
+  all('[data-project-open]').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const dialog = document.getElementById(trigger.dataset.projectOpen);
+      if (!(dialog instanceof HTMLDialogElement)) return;
+      projectDialogOpeners.set(dialog, trigger);
+      all('[data-reveal]', dialog).forEach((item) => item.classList.add('is-visible'));
+      dialog.showModal();
+      dialog.scrollTop = 0;
+    });
+  });
+
+  all('[data-project-dialog]').forEach((dialog) => {
+    all('[data-dialog-close]', dialog).forEach((button) => button.addEventListener('click', () => dialog.close()));
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => projectDialogOpeners.get(dialog)?.focus());
+  });
+
   // Technical skill explorer
   const skillsData = {
     languages: ['Go', 'C#', '.NET', 'TypeScript', 'JavaScript', 'React', 'SQL'],
